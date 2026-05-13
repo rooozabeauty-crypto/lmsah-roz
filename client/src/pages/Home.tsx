@@ -213,6 +213,8 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-3">
             {isAuthenticated ? (
               <>
+                <Link href="/dashboard" className="text-sm font-medium hover:text-accent transition">لوحة التحكم</Link>
+                <Link href="/assistant" className="text-sm font-medium hover:text-accent transition">المساعد الذكي</Link>
                 <span className="text-sm text-muted-foreground">{user?.name}</span>
                 <Button variant="outline" size="sm" onClick={logout}>تسجيل الخروج</Button>
               </>
@@ -243,6 +245,12 @@ export default function Home() {
               <a href="#tools" className="block text-sm font-medium hover:text-accent">الأدوات</a>
               <Link href="/store" className="block text-sm font-medium hover:text-accent">المتجر</Link>
               <a href="#contact" className="block text-sm font-medium hover:text-accent">التواصل</a>
+              {isAuthenticated && (
+                <>
+                  <Link href="/dashboard" className="block text-sm font-medium hover:text-accent">لوحة التحكم</Link>
+                  <Link href="/assistant" className="block text-sm font-medium hover:text-accent">المساعد الذكي</Link>
+                </>
+              )}
               {isAuthenticated ? (
                 <Button variant="outline" size="sm" onClick={logout} className="w-full">تسجيل الخروج</Button>
               ) : (

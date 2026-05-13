@@ -7,6 +7,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Studio from "./pages/Studio";
 import Store from "./pages/Store";
+import Dashboard from "./pages/Dashboard";
+import AIAssistant from "./pages/AIAssistant";
+import SocialMedia from "./pages/SocialMedia";
 
 function Router() {
   return (
@@ -14,6 +17,9 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/studio" component={Studio} />
       <Route path="/store" component={Store} />
+      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/assistant" component={AIAssistant} />
+      <Route path="/social-media" component={SocialMedia} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

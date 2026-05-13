@@ -189,3 +189,119 @@ body {
     background-clip: text;
   }
 }
+
+  /* Glow effects */
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(102, 51, 153, 0.3), 0 0 40px rgba(212, 175, 55, 0.2);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 30px rgba(102, 51, 153, 0.4);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(212, 175, 55, 0.2),
+      transparent
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba(102, 51, 153, 0.3);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 40px rgba(102, 51, 153, 0.5);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Gradient background animation */
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .gradient-animate {
+    background-size: 200% 200%;
+    animation: gradient-shift 6s ease infinite;
+  }
+
+  /* Smooth transitions */
+  button,
+  a,
+  [role="button"] {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  /* Enhanced hover effects */
+  button:hover:not(:disabled),
+  a[href]:hover,
+  [role="button"]:hover:not([aria-disabled="true"]) {
+    @apply transform -translate-y-0.5;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:border-accent/50;
+  }
+
+  /* Gradient text animation */
+  .text-gradient-animated {
+    background: linear-gradient(
+      90deg,
+      oklch(0.65 0.25 280),
+      oklch(0.5 0.22 45),
+      oklch(0.65 0.25 280)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s linear infinite;
+  }
