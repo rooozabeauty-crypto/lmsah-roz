@@ -1,10 +1,11 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { z } from "zod";
+import { generateImage } from "./_core/imageGeneration";
 
 export const appRouter = router({
-    // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
@@ -17,12 +18,25 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  studio: router({
+    generateImage: protectedProcedure
+      .input(
+        z.object({
+          prompt: z.string().min(10, "الوصف يجب أن يكون على الأقل 10 أحرف"),
+          format: z.enum(["square", "portrait", "landscape"]).default("square"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        try {
+          const { url } = await generateImage({
+            prompt: input.prompt,
+          });
+          return { url };
+        } catch (error) {
+          throw new Error("فشل توليد الصورة. حاول مرة أخرى.");
+        }
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
